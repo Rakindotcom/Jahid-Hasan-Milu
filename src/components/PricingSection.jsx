@@ -1,188 +1,173 @@
 import { motion } from 'framer-motion';
-import { Check, Star, Crown, Zap, Sparkles } from 'lucide-react';
+import { MessageCircle, DollarSign, Clock, Play, BookOpen, Users, Globe, Star } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
 const PricingSection = () => {
-  const packages = [
+  const [activeCategory, setActiveCategory] = useState('All');
+  
+  const categories = ['All', 'Productivity', 'Growth', 'Money'];
+  
+  const courses = [
     {
-      name: "Webinar Package",
+      id: 1,
+      title: "Webinar Package",
+      subtitle: "PERFECT FOR GETTING STARTED",
+      category: "Productivity",
+      language: "2-day live program",
+      students: "Essential worksheets included",
       price: "280",
       originalPrice: "500",
-      icon: Zap,
-      popular: false,
-      description: "Perfect for getting started with Prophetic Productivity",
-      features: [
-        "2-day live program",
-        "Essential worksheets",
-        "Lifetime recorded access",
-        "Productivity Circle lifetime membership",
-        "Basic community support",
-        "Email support"
-      ],
-      cta: "Start Your Journey"
+      bgColor: "linear-gradient(135deg, #8B5CF6 0%, #A855F7 100%)",
+      icon: MessageCircle,
+      image: "💬"
     },
     {
-      name: "Basic Package",
+      id: 2,
+      title: "Basic Package",
+      subtitle: "COMPREHENSIVE LEARNING",
+      category: "Growth",
+      language: "30+ recorded classes",
+      students: "Lifetime access included",
       price: "470",
       originalPrice: "800",
+      bgColor: "linear-gradient(135deg, #10B981 0%, #059669 100%)",
       icon: Star,
-      popular: true,
-      description: "Comprehensive learning with lifetime access",
-      features: [
-        "30+ recorded classes",
-        "Complete worksheets collection",
-        "Lifetime recorded access",
-        "Productivity Circle lifetime membership",
-        "Priority community support",
-        "Monthly Q&A sessions",
-        "Progress tracking tools",
-        "Bonus productivity templates"
-      ],
-      cta: "Most Popular Choice"
+      image: "⭐"
     },
     {
-      name: "Complete Package",
+      id: 3,
+      title: "Complete Package",
+      subtitle: "FULL TRANSFORMATION",
+      category: "Money",
+      language: "8-week live program",
+      students: "16 live sessions with coach",
       price: "1800",
       originalPrice: "3000",
-      icon: Crown,
-      popular: false,
-      description: "Full transformation with personal guidance",
-      features: [
-        "8-week live program",
-        "16 live sessions with coach",
-        "30+ recorded classes",
-        "Weekly homework & feedback",
-        "Muhasaba App (6 months)",
-        "Complete worksheets collection",
-        "Personal progress tracking (6 months)",
-        "Lifetime recorded access",
-        "Productivity Circle lifetime membership",
-        "1-on-1 coaching session",
-        "WhatsApp group access",
-        "Priority support"
-      ],
-      cta: "Complete Transformation"
+      bgColor: "linear-gradient(135deg, #F59E0B 0%, #D97706 100%)",
+      icon: Clock,
+      image: "👑"
     }
   ];
 
+  const filteredCourses = activeCategory === 'All' 
+    ? courses 
+    : courses.filter(course => course.category === activeCategory);
+
   return (
-    <section className="section-padding bg-dark-lighter" id="pricing">
+    <section className="section-padding bg-dark" id="pricing">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
-          <h2 className="text-4xl md:text-5xl font-display font-bold text-white mb-6">
+          <h2 className="text-4xl md:text-5xl font-display font-bold text-gray-900 mb-4">
             Choose Your <span className="text-gradient">Transformation Path</span>
           </h2>
-          <p className="text-xl text-slate-300 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
             Select the package that best fits your learning style and commitment level. All packages include lifetime access to recorded content.
           </p>
+          
+          {/* Category Filter */}
+          <div className="flex flex-wrap justify-center gap-3 mb-12">
+            {categories.map((category) => (
+              <button
+                key={category}
+                onClick={() => setActiveCategory(category)}
+                className={`px-6 py-2 rounded-full font-medium transition-all duration-300 ${
+                  activeCategory === category
+                    ? 'bg-blue-600 text-white shadow-lg'
+                    : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
+                }`}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
         </motion.div>
 
-        <div className="grid lg:grid-cols-3 gap-8">
-          {packages.map((pkg, index) => (
+        {/* Course Cards */}
+        <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-6 mb-8">
+          {filteredCourses.map((course, index) => (
             <motion.div
-              key={index}
+              key={course.id}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className={`relative card-glass hover-lift overflow-hidden border-2 border-white ${
-                pkg.popular ? 'ring-2 ring-blue-500 transform scale-105 glow-blue' : ''
-              }`}
+              className="group cursor-pointer"
             >
-              {pkg.popular && (
-                <div className="absolute top-0 left-0 right-0 gradient-primary text-white text-center py-3 text-sm font-semibold">
-                  <div className="flex items-center justify-center space-x-2">
-                    <Sparkles size={16} />
-                    <span>MOST POPULAR</span>
-                    <Sparkles size={16} />
+              <div 
+                className="relative rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 h-80"
+                style={{ background: course.bgColor }}
+              >
+                {/* Course Icon/Image - Larger */}
+                <div className="absolute top-4 left-4 bg-white/20 backdrop-blur-sm rounded-lg p-3">
+                  <span className="text-4xl">{course.image}</span>
+                </div>
+                
+                {/* Large Center Image */}
+                <div className="flex items-center justify-center h-40 pt-8">
+                  <div className="text-8xl opacity-20">
+                    {course.image}
                   </div>
                 </div>
-              )}
-
-              <div className="p-8">
-                <div className="flex items-center space-x-3 mb-6">
-                  <div className={`${pkg.popular ? 'bg-blue-500/20 text-blue-400' : 'glass-light text-slate-400'} p-3 rounded-xl`}>
-                    <pkg.icon size={24} />
+                
+                {/* Course Content */}
+                <div className="absolute bottom-0 left-0 right-0 p-6 text-white bg-gradient-to-t from-black/60 to-transparent">
+                  <div className="mb-3">
+                    <p className="text-xs font-semibold opacity-90 mb-1">
+                      {course.subtitle}
+                    </p>
+                    <h3 className="text-lg font-bold leading-tight">
+                      {course.title}
+                    </h3>
                   </div>
-                  <div>
-                    <h3 className="text-2xl font-display font-bold text-white">{pkg.name}</h3>
-                    <p className="text-slate-400 text-sm">{pkg.description}</p>
+                  
+                  {/* Course Stats */}
+                  <div className="space-y-1 mb-4">
+                    <div className="flex items-center text-sm opacity-90">
+                      <Globe size={14} className="mr-2" />
+                      {course.language}
+                    </div>
+                    <div className="flex items-center text-sm opacity-90">
+                      <Users size={14} className="mr-2" />
+                      {course.students}
+                    </div>
                   </div>
-                </div>
-
-                <div className="mb-8">
-                  <div className="flex items-baseline space-x-2">
-                    <span className="text-4xl font-bold text-white">{pkg.price}</span>
-                    <span className="text-lg text-slate-400">BDT</span>
-                    <span className="text-lg text-slate-500 line-through ml-2">{pkg.originalPrice}</span>
+                  
+                  {/* Price and CTA */}
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <div className="text-lg font-bold">
+                        {course.price} BDT
+                      </div>
+                      {course.originalPrice && (
+                        <div className="text-sm opacity-75 line-through">
+                          {course.originalPrice} BDT
+                        </div>
+                      )}
+                    </div>
+                    <div className="text-sm opacity-75">→</div>
                   </div>
-                  <div className="text-sm text-green-400 font-semibold mt-1">
-                    Save {((pkg.originalPrice - pkg.price) / pkg.originalPrice * 100).toFixed(0)}%
-                  </div>
-                </div>
-
-                <ul className="space-y-3 mb-8">
-                  {pkg.features.map((feature, featureIndex) => (
-                    <li key={featureIndex} className="flex items-start space-x-3">
-                      <Check size={18} className="text-green-400 mt-0.5 flex-shrink-0" />
-                      <span className="text-slate-300 text-sm">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <Link
-                  to="/login"
-                  className={`w-full ${pkg.popular ? 'btn-primary' : 'btn-accent'} py-4 px-6 rounded-xl font-semibold text-center block hover-lift`}
-                >
-                  {pkg.cta}
-                </Link>
-
-                <div className="mt-4 text-center">
-                  <p className="text-xs text-slate-500">
-                    30-day money-back guarantee
-                  </p>
                 </div>
               </div>
             </motion.div>
           ))}
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          viewport={{ once: true }}
-          className="text-center mt-16"
-        >
-          <div className="card-glass glow-accent">
-            <h3 className="text-2xl font-display font-bold text-white mb-4">
-              🎁 Special Launch Offer
-            </h3>
-            <p className="text-slate-300 mb-6">
-              Enroll in any package before <span className="font-semibold text-gradient-accent">December 31st</span> and get:
-            </p>
-            <div className="grid md:grid-cols-3 gap-4">
-              <div className="gradient-accent text-black p-4 rounded-xl">
-                <div className="font-bold">Bonus Workshop</div>
-                <div className="text-sm opacity-90">Time Management Mastery</div>
-              </div>
-              <div className="bg-green-500 text-white p-4 rounded-xl">
-                <div className="font-bold">Free Templates</div>
-                <div className="text-sm opacity-90">50+ Productivity Templates</div>
-              </div>
-              <div className="gradient-primary text-white p-4 rounded-xl">
-                <div className="font-bold">Extended Support</div>
-                <div className="text-sm opacity-90">3 Months Extra Support</div>
-              </div>
-            </div>
-          </div>
-        </motion.div>
+        {/* Navigation Arrows */}
+        <div className="flex justify-center space-x-4">
+          <button className="w-12 h-12 rounded-full bg-white border border-gray-300 hover:bg-gray-50 flex items-center justify-center transition-colors">
+            <span className="text-gray-700">←</span>
+          </button>
+          <button className="w-12 h-12 rounded-full bg-white border border-gray-300 hover:bg-gray-50 flex items-center justify-center transition-colors">
+            <span className="text-gray-700">→</span>
+          </button>
+        </div>
       </div>
     </section>
   );

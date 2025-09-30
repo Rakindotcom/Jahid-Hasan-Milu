@@ -19,7 +19,7 @@ const HeroSection = () => {
   return (
     <section className="relative min-h-screen flex items-center animated-bg">
       {/* Overlay */}
-      <div className="absolute inset-0 bg-black/30"></div>
+      <div className="absolute inset-0 bg-white/20"></div>
       
       {/* Floating Elements */}
       <div className="absolute top-20 left-10 w-20 h-20 bg-blue-500/10 rounded-full blur-xl animate-pulse"></div>
@@ -34,7 +34,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-white space-y-8"
+            className="text-gray-800 space-y-8"
           >
             {/* Trust Badge */}
             <motion.div
@@ -43,7 +43,7 @@ const HeroSection = () => {
               transition={{ delay: 0.2 }}
               className="inline-flex items-center space-x-3 glass-light rounded-full px-6 py-3 glow-blue"
             >
-              <div className="flex text-yellow-400">
+              <div className="flex text-yellow-700">
                 {[...Array(5)].map((_, i) => (
                   <motion.div
                     key={i}
@@ -55,7 +55,7 @@ const HeroSection = () => {
                   </motion.div>
                 ))}
               </div>
-              <span className="text-sm font-medium">Trusted by 500+ Students</span>
+              <span className="text-sm font-medium text-gray-800">Trusted by 500+ Students</span>
               <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
             </motion.div>
 
@@ -69,7 +69,7 @@ const HeroSection = () => {
               <span className="block">8-Week</span>
               <span className="block text-gradient-accent">Prophetic</span>
               <span className="block">Productivity</span>
-              <span className="block text-3xl md:text-4xl font-normal text-slate-300 mt-2">
+              <span className="block text-3xl md:text-4xl font-normal text-gray-800 mt-2">
                 Masterclass
               </span>
             </motion.h1>
@@ -79,10 +79,10 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
-              className="text-xl max-w-2xl text-slate-200 leading-relaxed"
+              className="text-xl max-w-2xl text-gray-700 leading-relaxed"
             >
               Transform your busy life into a{' '}
-              <span className="text-yellow-400 font-semibold">barakah-driven life</span>{' '}
+              <span className="text-yellow-800 font-semibold">barakah-driven life</span>{' '}
               using the Prophetic system in work, worship, family, and everything in life.
             </motion.p>
 
@@ -126,10 +126,10 @@ const HeroSection = () => {
                   whileHover={{ scale: 1.05 }}
                 >
                   <div className="w-12 h-12 glass-light rounded-2xl flex items-center justify-center mx-auto mb-3">
-                    <stat.icon size={20} className="text-yellow-400" />
+                    <stat.icon size={20} className="text-yellow-700" />
                   </div>
-                  <div className="font-bold text-lg text-white">{stat.value}</div>
-                  <div className="text-sm text-slate-400">{stat.label}</div>
+                  <div className="font-bold text-lg text-gray-900">{stat.value}</div>
+                  <div className="text-sm text-gray-800">{stat.label}</div>
                 </motion.div>
               ))}
             </motion.div>
@@ -149,8 +149,8 @@ const HeroSection = () => {
             <div className="card-glass hover-lift glow-blue space-y-8">
               {/* Video Preview */}
               <div className="aspect-video gradient-primary rounded-xl flex items-center justify-center cursor-pointer group relative overflow-hidden">
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-all"></div>
-                <div className="relative text-center text-white z-10">
+                <div className="absolute inset-0 bg-white/20 group-hover:bg-white/30 transition-all"></div>
+                <div className="relative text-center text-gray-900 z-10">
                   <motion.div 
                     className="w-20 h-20 glass-light rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-white/30 transition-all duration-300"
                     whileHover={{ scale: 1.1 }}
@@ -197,12 +197,12 @@ const HeroSection = () => {
                   >
                     <div className="flex items-center space-x-3">
                       <div className="w-8 h-8 glass-light rounded-lg flex items-center justify-center">
-                        <item.icon size={16} className="text-yellow-400" />
+                        <item.icon size={16} className="text-yellow-700" />
                       </div>
-                      <span className="text-slate-300">{item.label}</span>
+                      <span className="text-gray-800">{item.label}</span>
                     </div>
                     <span className={`font-bold text-lg ${
-                      item.highlight ? 'text-yellow-400' : 'text-white'
+                      item.highlight ? 'text-yellow-800' : 'text-gray-900'
                     }`}>
                       {item.value}
                     </span>

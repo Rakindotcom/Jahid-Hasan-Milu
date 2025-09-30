@@ -24,27 +24,21 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      scrolled 
-        ? 'glass backdrop-blur-md shadow-soft border-b border-slate-700/50' 
-        : 'bg-transparent'
-    }`}>
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
+      ? 'glass backdrop-blur-md shadow-soft border-b border-gray-200/50'
+      : 'bg-transparent'
+      }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex items-center space-x-3">
-            <div className="relative">
-              <div className="w-10 h-10 rounded-xl gradient-primary flex items-center justify-center text-white font-bold text-lg shadow-glow">
-                <Sparkles size={18} />
-              </div>
-              <div className="absolute -top-1 -right-1 w-3 h-3 bg-yellow-400 rounded-full animate-pulse"></div>
-            </div>
+            <img src="/icon.png" alt="icon" className='h-13' />
             <div>
-              <h1 className="text-lg font-display font-bold text-white">
-                Divine Consultancy
+              <h1 className="text-lg font-display font-bold text-gray-900">
+                Jahid Hasan Milu
               </h1>
-              <p className="text-xs text-slate-400">
-                Prophetic Productivity
+              <p className="text-xs text-gray-700">
+                Prophetic Productivity Coach
               </p>
             </div>
           </div>
@@ -55,7 +49,7 @@ const Navbar = () => {
               <a
                 key={item.name}
                 href={item.href}
-                className="text-sm font-medium text-slate-300 hover:text-white transition-colors duration-200 hover:glow-blue rounded-lg px-3 py-2"
+                className="text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors duration-200 hover:glow-blue rounded-lg px-3 py-2"
               >
                 {item.name}
               </a>
@@ -73,7 +67,7 @@ const Navbar = () => {
           <div className="md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="p-2 rounded-lg text-white hover:bg-white/10 transition-colors duration-200"
+              className="p-2 rounded-lg text-gray-900 hover:bg-gray-100 transition-colors duration-200"
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -87,14 +81,14 @@ const Navbar = () => {
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -10 }}
-          className="md:hidden glass backdrop-blur-md border-t border-slate-700/50"
+          className="md:hidden glass backdrop-blur-md border-t border-gray-200/50"
         >
           <div className="px-4 py-4 space-y-2">
             {navItems.map((item) => (
               <a
                 key={item.name}
                 href={item.href}
-                className="block px-4 py-3 text-slate-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors duration-200"
+                className="block px-4 py-3 text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors duration-200"
                 onClick={() => setIsOpen(false)}
               >
                 {item.name}
